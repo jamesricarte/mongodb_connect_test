@@ -1,20 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const crudRoutes = require('./routes/crud');
 
+dotenv.config();
 const app = express();
+const port = process.env.PORT || 5000
 
-app.get('/get', (req, res) => {
-    res.json("hello");
-})
+app.use(express.json());
+app.use('/users', crudRoutes);
 
-const mongo_uri = "mongodb+srv://admin:jamesuhenyou123@cluster0.0p7jv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-mongoose.connect(mongo_uri)
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
 
     console.log("Mongodb Connection Successfull");  
 
-    app.listen(5000, () => {
-        console.log('server running at port 5000');
+    app.listen(port, () => {
+        console.log(`Server running at port: ${port}`);
     })
 })
 .catch((error) => {
