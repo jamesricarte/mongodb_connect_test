@@ -11,7 +11,7 @@ const mongo_uri = "mongodb+srv://admin:jamesuhenyou123@cluster0.0p7jv.mongodb.ne
 mongoose.connect(mongo_uri)
 .then(() => {
 
-    console.log("Mongodb Connection Successfull");
+    console.log("Mongodb Connection Successfull");  
 
     app.listen(5000, () => {
         console.log('server running at port 5000');
